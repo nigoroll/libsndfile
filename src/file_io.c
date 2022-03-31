@@ -819,14 +819,14 @@ psf_open_handle (PSF_FILE * pfile)
 	pwszPath = malloc (nResult * sizeof (WCHAR)) ;
 	if (!pwszPath)
 		return INVALID_HANDLE_VALUE ;
-	
+
 	int nResult2 = MultiByteToWideChar (CP_UTF8, 0, pfile->path, -1, pwszPath, nResult) ;
 	if (nResult != nResult2)
 	{	free (pwszPath) ;
 		return INVALID_HANDLE_VALUE ;
 		} ;
 
-#if defined (WINAPI_FAMILY_PARTITION) && !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+#if defined (WINAPI_FAMILY_PARTITION) && !WINAPI_FAMILY_PARTITION (WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 	if (!pfile->use_wchar)
 		return INVALID_HANDLE_VALUE ;
 
